@@ -1,5 +1,6 @@
 import { UserModel } from "../model/user.model";
-
+import UserRoleBadge from "../components/UserRoleBagde"
+import UserActions from "../components/UserActions"
 interface UserTableRowProps {
   user: UserModel;
 }
@@ -27,20 +28,16 @@ function UserTableRow({
       </td>
 
       <td className="px-4 py-3">
-        {user.role}
-      </td>
+  <UserRoleBadge role={user.role} />
+</td>
 
       <td className="px-4 py-3">
         {user.age}
       </td>
 
       <td className="px-4 py-3 text-center">
-
-        <button className="rounded bg-blue-500 px-3 py-1 text-sm text-white">
-          View
-        </button>
-
-      </td>
+  <UserActions userId={user.id} />
+</td>
 
     </tr>
   );

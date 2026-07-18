@@ -2,6 +2,7 @@ import { UserModel } from "../model/user.model";
 import UserTableHeader from "./UserTableHeader";
 import UserTableRow from "./UserTableRow";
 
+
 interface UserTableProps {
   users: UserModel[];
 }
