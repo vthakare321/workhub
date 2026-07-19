@@ -15,6 +15,9 @@ import { PERMISSIONS } from "../../constants/permissions";
 import UserDetailsPage from "../../features/users/pages/UserDetailsPage";
 import EditUserPage from "../../features/users/pages/EditUserPage";
 import CreateUserPage from "../../features/users/pages/CreateUserPage"
+import CreateWorkItemPage from "../../features/work-items/pages/CreateWorkItemPage";
+import WorkItemDetailsPage from "../../features/work-items/pages/WorkItemDetailsPage";
+import EditWorkItemPage from "../../features/work-items/pages/EditWorkItemPage";
 
 function AppRoutes() {
   return (
@@ -83,6 +86,33 @@ function AppRoutes() {
           </ProtectedRoute>
         }
       />
+
+      <Route
+  path="/work-items/new"
+  element={
+    <ProtectedRoute permission={PERMISSIONS.WORKITEMS_CREATE}>
+      <CreateWorkItemPage />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/work-items/:workItemId"
+  element={
+    <ProtectedRoute permission={PERMISSIONS.WORKITEMS_VIEW}>
+      <WorkItemDetailsPage />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/work-items/:workItemId/edit"
+  element={
+    <ProtectedRoute permission={PERMISSIONS.WORKITEMS_EDIT}>
+      <EditWorkItemPage />
+    </ProtectedRoute>
+  }
+/>
 
       <Route
         path="/profile"

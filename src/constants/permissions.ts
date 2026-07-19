@@ -8,6 +8,8 @@ export const PERMISSIONS = {
 
   WORKITEMS_VIEW: "workitems:view",
   WORKITEMS_CREATE: "workitems:create",
+  WORKITEMS_EDIT: "workitems:edit",
+  WORKITEMS_DELETE: "workitems:delete",
 
   PROFILE_VIEW: "profile:view",
 
