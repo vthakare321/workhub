@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 
-import {Card} from "../../../components/common/index"
+import {BackButton, Card} from "../../../components/common/index"
 import { useUserDetail } from "../hooks/useUserDetail";
 
 function UserDetailsPage() {
@@ -23,7 +23,11 @@ function UserDetailsPage() {
   }
 
   return (
+    <div>
+<BackButton />
+    
     <Card title="User Details">
+        
       <div className="space-y-4">
 
         <div>
@@ -44,6 +48,7 @@ function UserDetailsPage() {
 
       </div>
     </Card>
+    </div>
   );
 }
 

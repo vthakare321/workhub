@@ -1,14 +1,21 @@
-// import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
 import UserForm from "../components/UserForm";
 import { useUserDetail } from "../hooks/useUserDetail";
-import { useNavigate, useParams } from "react-router-dom";
+import { useUpdateUser } from "../hooks/useUpdateUser";
 import { UserFormData } from "../schemas/user.schema";
+import { UserModel } from "../model/user.model";
+import {BackButton} from "../../../components/common/index"
 function EditUserPage() {
   const { userId } = useParams();
+
   const navigate = useNavigate();
+
   const id = Number(userId);
 
   const { data: user, isLoading } = useUserDetail(id);
+
+  const updateUser = useUpdateUser();
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -18,15 +25,25 @@ function EditUserPage() {
     return <p>User not found.</p>;
   }
 
-  const handleSubmit = (data: UserFormData) => {
-  console.log("Updated User:", data);
+  const handleSubmit = async (data: UserFormData) => {
+    const updatedUser: UserModel = {
+      ...user,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      fullName: `${data.firstName} ${data.lastName}`,
+      email: data.email,
+      role: data.role,
+    };
 
-  // Later we'll call update API here
+    await updateUser.mutateAsync(updatedUser);
 
-  navigate("/users");
-};
+    navigate("/users");
+  };
 
   return (
+    <div>
+
+    <BackButton />
     <UserForm
       mode="edit"
       defaultValues={{
@@ -36,7 +53,9 @@ function EditUserPage() {
         role: user.role,
       }}
       onSubmit={handleSubmit}
+      
     />
+    </div>
   );
 }
 

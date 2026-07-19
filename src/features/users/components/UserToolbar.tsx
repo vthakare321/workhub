@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import Button from "../../../components/common/Button/Button";
 interface UserToolbarProps {
   search: string;
   role: string;
@@ -59,6 +61,10 @@ function UserToolbar({
         <option value="asc">Ascending</option>
         <option value="desc">Descending</option>
       </select>
+
+      <Link to="/users/new">
+  <Button>Create User</Button>
+     </Link>
 
     </div>
   );
